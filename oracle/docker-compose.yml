@@ -1,0 +1,18 @@
+services:
+  oracle:
+    image: container-registry.oracle.com/database/graph-quickstart:latest
+    container_name: oracle-benchmark
+    restart: unless-stopped
+    ports:
+      - "1521:1521"
+      - "7007:7007"
+    environment:
+      - ORACLE_PWD=Password234
+      - ORACLE_CHARACTERSET=AL32UTF8
+      - JAVA_OPTS=-Xms4g -Xmx6g
+    volumes:
+      - ./data:/opt/oracle/oradata
+      - ./import:/import
+    shm_size: 4g
+    mem_limit: 8g
+    mem_reservation: 6g
